@@ -1,0 +1,110 @@
+---
+import { Button } from '@/components/ui/button';
+---
+
+<section id="services" class="pt-30 pb-20 bg-card/50">
+  <div class="container">
+    <div class="text-center max-w-[800px] mx-auto mb-16">
+      <h2 class="text-4xl leading-[1.3] font-bold mb-2 md:text-5xl">
+        Let's get you your dream body
+      </h2>
+      <p class="text-lg text-muted-foreground">
+        Choose the plan that fits your goals
+      </p>
+    </div>
+
+    <div class="md:grid md:grid-cols-2 md:gap-8">
+      <!-- Service 1 -->
+      <div
+        class="bg-card border-[1.5px] border-border rounded-xl p-8 hover:border-primary/70 transition-colors"
+      >
+        <div class="flex items-center gap-3 mb-4">
+          <div
+            class="size-12 bg-primary/20 rounded-lg flex items-center justify-center text-2xl"
+          >
+            🏋️
+          </div>
+          <h3 class="text-2xl font-bold">1-ON-1 COACHING</h3>
+        </div>
+
+        <p class="text-muted-foreground mb-6">
+          Personalized training sessions designed specifically for your goals,
+          fitness level, and lifestyle.
+        </p>
+
+        <ul class="space-y-3 text-muted-foreground mb-8">
+          <li class="flex items-center gap-2">
+            <span>•</span>
+            Customized Training Plans
+          </li>
+          <li class="flex items-center gap-2">
+            <span>•</span>
+            Form Correction & Safety
+          </li>
+          <li class="flex items-center gap-2">
+            <span>•</span>
+            Nutrition Guidance
+          </li>
+          <li class="flex items-center gap-2">
+            <span>•</span>
+            Progress Tracking
+          </li>
+        </ul>
+
+        <p class="text-2xl font-bold mb-6">
+          <span class="text-primary">$150</span>/session
+        </p>
+
+        <Button className="w-full" size={'lg'}>
+          <a href="#contact">Get Started</a>
+        </Button>
+      </div>
+
+      <!-- Service 2 -->
+      <div
+        class="bg-card border-[1.5px] border-border rounded-xl p-8 hover:border-primary/70 transition-colors"
+      >
+        <div class="flex items-center gap-3 mb-4">
+          <div
+            class="size-12 bg-primary/20 rounded-lg flex items-center justify-center text-2xl"
+          >
+            💻
+          </div>
+          <h3 class="text-2xl font-bold">ONLINE COACHING</h3>
+        </div>
+
+        <p class="text-muted-foreground mb-6">
+          Transform from anywhere. Personalized programs with video support and
+          daily check-ins.
+        </p>
+
+        <ul class="space-y-3 text-muted-foreground mb-8">
+          <li class="flex items-center gap-2">
+            <span>•</span>
+            Custom Workout Programs
+          </li>
+          <li class="flex items-center gap-2">
+            <span>•</span>
+            Meal Planning & Macros
+          </li>
+          <li class="flex items-center gap-2">
+            <span>•</span>
+            Weekly Video Feedback
+          </li>
+          <li class="flex items-center gap-2">
+            <span>•</span>
+            Unlimited Support
+          </li>
+        </ul>
+
+        <p class="text-2xl font-bold mb-6">
+          <span class="text-primary">$199</span>/session
+        </p>
+
+        <Button className="w-full" size={'lg'}>
+          <a href="#contact">Get Started</a>
+        </Button>
+      </div>
+    </div>
+  </div>
+</section>

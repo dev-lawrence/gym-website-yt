@@ -1,0 +1,96 @@
+---
+import HeroImage from '@/assets/hero.png';
+import { Button } from '@/components/ui/button';
+import { Image } from 'astro:assets';
+import { Star } from 'lucide-react';
+
+const testimonials = [
+  {
+    text: "I went from zero fitness to running a half-marathon in 8 months. Ryan's programming is scientifically-backed and actually enjoyable. Best investment I've made.",
+    author: 'Jordan Miles',
+    duration: '8 months',
+  },
+  {
+    text: "As a busy parent, I needed flexibility. The online coaching fit perfectly into my schedule, and I've never felt stronger. Ryan keeps me accountable without being pushy.",
+    author: 'Sarah Chen',
+    duration: '1 year',
+  },
+  {
+    text: 'I was skeptical about personal training until I worked with Ryan. He fixed my form, prevented injuries, and made me actually *want* to show up. Game-changer.',
+    author: 'Marcus Johnson',
+    duration: '6 months',
+  },
+];
+---
+
+<section id="home" class="pt-32">
+  <div class="container">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <!-- Content -->
+      <div class="space-y-6">
+        <h1 class="text-5xl md:text-6xl font-bold leading-tight">
+          Your <span class="text-primary">Trusted</span> Fitness Coach
+        </h1>
+
+        <p class="text-xl">
+          Personal training and online coaching for sustainable results
+        </p>
+
+        <div class="flex gap-4 flex-wrap pt-4">
+          <Button className="w-full md:w-fit" size={'lg'}>
+            <a href="#contact">Book Consultation</a>
+          </Button>
+          <Button className="w-full md:w-fit" variant={'outline'} size={'lg'}>
+            <a href="#services">View Services</a>
+          </Button>
+        </div>
+
+        <ul class="space-y-3 pt-6">
+          <li class="flex items-center gap-2">
+            <span class="text-primary font-bold">✓</span>
+            15 years of experience
+          </li>
+
+          <li class="flex items-center gap-2">
+            <span class="text-primary font-bold">✓</span>
+            2000+ satisfied clients
+          </li>
+
+          <li class="flex items-center gap-2">
+            <span class="text-primary font-bold">✓</span>
+            Certified in multiple disciplines
+          </li>
+        </ul>
+      </div>
+
+      <!-- Image -->
+      <div class="relative">
+        <div class="bg-linear-to-br from-primary/20 to-slate rounded-2xl">
+          <Image
+            class="w-full rounded-2xl aspect-square object-cover"
+            src={HeroImage}
+            alt={'Hero Image'}
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container md:grid md:grid-cols-3 md:gap-6 mt-25">
+    {
+      testimonials.map((testimonial) => (
+        <div class="bg-slate border-[1.5px] border-gray-700 rounded-lg p-6 hover:border-primary/80 transition-colors">
+          <div class="flex gap-1 mb-4">
+            {[...Array(5)].map(() => (
+              <Star className="text-primary fill-primary" />
+            ))}
+          </div>
+          <p class="mb-4">"{testimonial.text}"</p>
+          <p class="font-semibold">
+            - {testimonial.author}, {testimonial.duration}
+          </p>
+        </div>
+      ))
+    }
+  </div>
+</section>

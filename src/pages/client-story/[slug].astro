@@ -1,0 +1,160 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { clientStoriesData } from '@/lib/client-stories-data';
+import { Image } from 'astro:assets';
+import { ArrowLeft, CheckCheck } from 'lucide-react';
+
+export function getStaticPaths() {
+  const slugs = clientStoriesData.map((story) => story.slug);
+  return slugs.map((slug) => ({ params: { slug } }));
+}
+
+const { slug } = Astro.params;
+
+const story = clientStoriesData.find((story) => story.slug === slug);
+
+if (!story) {
+  throw new Error(`Client story not found for slug: ${slug}`);
+}
+---
+
+<Layout title={`${story.name} - Client Story `}>
+  <main class="min-h-screen bg-background mt-20">
+    <div class="bg-card border-b border-border">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <a
+          href="/"
+          class="inline-flex items-center mb-6 gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+        >
+          <ArrowLeft className="size-4" />
+          Back to stories
+        </a>
+        <h1 class="text-4xl sm:text-5xl font-bold text-foreground mb-2">
+          {story.name}
+        </h1>
+        <p class="text-lg text-muted-foreground">{story.title}</p>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="mb-12">
+        <div class="md:grid md:grid-cols-2 md:gap-6 mb-6">
+          <div class="rounded-lg overflow-hidden border border-border">
+            <Image
+              src={story.beforeImage}
+              alt={`${story.name} before`}
+              class="w-full h-auto object-cover aspect-3/4"
+            />
+            <div class="bg-muted p-4 text-center">
+              <p class="font-semibold text-foreground">Before</p>
+              <p class="text-sm text-muted-foreground">{story.startDate}</p>
+            </div>
+          </div>
+          <div class="rounded-lg overflow-hidden border border-border">
+            <Image
+              src={story.afterImage}
+              alt={`${story.name} after`}
+              class="w-full h-auto object-cover aspect-3/4"
+            />
+            <div class="bg-muted p-4 text-center">
+              <p class="font-semibold text-foreground">After</p>
+              <p class="text-sm text-muted-foreground">{story.endDate}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Story Overview -->
+      <div class="mb-12 p-6 rounded-lg border border-border bg-card/50">
+        <h2 class="text-2xl font-bold text-foreground mb-4">The Journey</h2>
+        <p class="text-lg text-foreground leading-relaxed">{story.fullStory}</p>
+      </div>
+
+      <!-- Goals -->
+      <div class="mb-12">
+        <h2 class="text-2xl font-bold text-foreground mb-4">Goals</h2>
+        <div class="md:grid md:grid-cols-2 md:gap-4">
+          {
+            story.goals.map((goal) => (
+              <div class="p-4 rounded-lg border border-border bg-card/50">
+                <p class="text-foreground">{goal}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Results -->
+      <div class="mb-12">
+        <h2 class="text-2xl font-bold text-foreground mb-4">
+          Results Achieved
+        </h2>
+        <div class="md:grid md:grid-cols-2 md:gap-4">
+          {
+            story.results.map((goal) => (
+              <div class="p-4 rounded-lg border border-primary/30 bg-primary/5">
+                <p class="text-foreground">{goal}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Challenges -->
+      <div class="mb-12">
+        <h2 class="text-2xl font-bold text-foreground mb-4">
+          Challenges Overcome
+        </h2>
+        <div class="space-y-3">
+          {
+            story.challenges.map((challenge, index) => (
+              <div class="flex gap-3 p-4 rounded-lg border border-border bg-card/50">
+                <div class="shrink-0 size-6 rounded-full bg-primary/20 flex items-center justify-center">
+                  <span class="text-sm font-semibold text-primary">
+                    {index + 1}
+                  </span>
+                </div>
+                <p class="text-foreground">{challenge}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Key Takeaways -->
+      <div class="mb-12">
+        <h2 class="text-2xl font-bold text-foreground mb-4">Key Takeaways</h2>
+        <div class="space-y-3">
+          {
+            story.keyTakeaways.map((takeaway, index) => (
+              <div class="flex gap-3 p-4 rounded-lg border border-border bg-card/50">
+                <div class="shrink-0 size-6 rounded-full bg-primary/20 flex items-center justify-center">
+                  <span class="text-sm font-semibold text-primary">✓</span>
+                </div>
+                <p class="text-foreground">{takeaway}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Testimonial -->
+      <div class="p-8 rounded-lg border border-primary/30 bg-primary/3">
+        <p class="text-xl text-foreground italic mb-4">"{story.testimonial}"</p>
+        <p class="text-lg text-primary font-semibold">- {story.name}</p>
+      </div>
+
+      <!-- Back button -->
+      <div class="mt-12 text-center">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-border hover:bg-accent transition-colors font-medium text-foreground"
+        >
+          <ArrowLeft className="size-4" />
+          Back to all stories
+        </a>
+      </div>
+    </div>
+  </main>
+</Layout>
